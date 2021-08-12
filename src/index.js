@@ -1,4 +1,4 @@
-const { app, ipcMain, BrowserWindow } = require('electron');
+const { app, ipcMain, shell, BrowserWindow } = require('electron');
 const path = require('path');
 const fs = require("fs");
 
@@ -53,6 +53,8 @@ function run(command, after) {
 //////////////////////// Main /////////////////////
 
 let path_engine_source;
+let path_premake;
+let config_premake_target;
 
 function get_source(repo, dest, after)
 {
@@ -111,8 +113,11 @@ ipcMain.on('download-engine-source', (event, path_engine_dest) => {
 ipcMain.on('make-engine-projects', (event, premake_config) =>
 {
     path_premake = premake_config[0];
-    config_premake_target= premake_config[1];
-
-    log(config_premake_target);
+    config_premake_target = premake_config[1];
     make_source(path_premake, config_premake_target, () => window.webContents.send("finish-locking-op"));
+});
+
+ipcMain.on('open-link', (event, link) => {
+    log(`Opening ${link} in browser...`);
+    shell.openExternal(link);
 });

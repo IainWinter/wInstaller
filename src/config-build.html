@@ -32,6 +32,7 @@
                         <td><input class="table-input" id="i-config-premake-target" type="text" value="vs2019" disabled></input></td>
                     </tr>
                 </table>
+                <p>Note for now: building the asset importer library requires cmake to be installed and avalible in the PATH env var. Install <a id="cmake-download" href="#">here</a> before making projects.</p>
             </div>
         </div>
 
@@ -84,6 +85,13 @@
                 b_make_projects.disabled = false;
                 b_compile_projects.disabled = false;
             }
+
+            // make link open in browser
+
+            document.getElementById('cmake-download')
+                .addEventListener('click', () => {
+                    window.api.send('open-link', 'https://cmake.org/download/')
+                });
 
         </script>
     </body>

@@ -4,7 +4,6 @@
     bottom: var(--border-margin);
     left: 0;
     user-select: none;
-    z-index: -100;
     max-height: 200px;
     overflow: overlay;
     width: calc(100% - var(--border-margin) * 2);
