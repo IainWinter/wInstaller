@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h1>Winter Engine Installer</h1>
+
+    <form>
+      <div class="i-labeled-text">
+        <label>Engine Source Directory</label>
+        <input id="i_path_engine" type="text" value=".\test"></input>
+      </div>
+
+      <div class="i-labeled-text">
+        <label>Premake Directory</label>
+        <input id="i_path_premake" type="text" value="..\tools\premake5.exe"></input>
+      </div>
+
+      <div class="i-labeled-text">
+        <label>MSBuild Directory</label>
+        <input id="i_path_msbuild" type="text" value="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/msbuild.exe"></input>
+      </div>
+      
+      <div class="i-labeled-text">
+        <label>Engine Source Git</label>
+        <input id="i_git_engine" type="text" value="https://github.com/IainWinter/IwEngine/"></input>
+      </div>
+      
+      <div class="i-labeled-text">
+        <label>FMod Source Url</label>
+        <input id="i_url_fmod" type="text" value="https://winter.dev/engine/fmod_libs.zip"></input>
+      </div>
+
+      <div class="i-labeled-text">
+        <label>Build project files for</label>
+        <input id="i_config_build_for" type="text" value="vs2019"></input>
+      </div>
+    </form>
+
+    <button id="test">ls</button>
+    <script>
+        window.api.receive("fromMain", (data) => {
+            console.log(`Received ${data} from main process`);
+        });
+        window.api.send("toMain", "some data");
+    </script>
+  </body>
+</html>
