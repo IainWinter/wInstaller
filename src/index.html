@@ -1,51 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <h1>Winter Engine Installer</h1>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pannel.css">
+</head>
+<body>
+    <div class="top">
+        <h1 class="top-title">Winter Engine</h1>
+    </div>
 
-    <form>
-      <div class="i-labeled-text">
-        <label>Engine Source Directory</label>
-        <input id="i_path_engine" type="text" value=".\test"></input>
-      </div>
+    <div class="hpannel">
+        <div class="pannel">
+            <h2 class="pannel-title">Create a project</h2>
+        </div>
+        <div class="pannel side-pannel">
+            <h2 class="pannel-title">Config engine</h2>
 
-      <div class="i-labeled-text">
-        <label>Premake Directory</label>
-        <input id="i_path_premake" type="text" value="..\tools\premake5.exe"></input>
-      </div>
+            <div class="pannel-button" onclick="window.location='config-install.html'">
+                <div class="pannel-button-thumb"></div>
+                <div class="pannel-button-info">
+                    <h3 class="panel-button-title">Install</h3>
+                    <p class="panel-button-text">Download the engine from source, or install precompiled binaries</p>
+                </div>
+            </div>
 
-      <div class="i-labeled-text">
-        <label>MSBuild Directory</label>
-        <input id="i_path_msbuild" type="text" value="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/msbuild.exe"></input>
-      </div>
-      
-      <div class="i-labeled-text">
-        <label>Engine Source Git</label>
-        <input id="i_git_engine" type="text" value="https://github.com/IainWinter/IwEngine/"></input>
-      </div>
-      
-      <div class="i-labeled-text">
-        <label>FMod Source Url</label>
-        <input id="i_url_fmod" type="text" value="https://winter.dev/engine/fmod_libs.zip"></input>
-      </div>
+            <div class="pannel-button" onclick="window.location='config-build.html'">
+                <div class="pannel-button-thumb"></div>
+                <div class="pannel-button-info">
+                    <h3 class="panel-button-title">Build & Compile</h3>
+                    <p class="panel-button-text">Locate build tools, build engine projects and compile, only needed if using engine source</p>
+                </div>
+            </div>
 
-      <div class="i-labeled-text">
-        <label>Build project files for</label>
-        <input id="i_config_build_for" type="text" value="vs2019"></input>
-      </div>
-    </form>
+            <div class="pannel-button">
+                <div class="pannel-button-thumb"></div>
+                <div class="pannel-button-info">
+                    <h3 class="panel-button-title">Create new project</h3>
+                    <p class="panel-button-text">Configure modules and plugins for a new project</p>
+                </div>
+            </div>
 
-    <button id="test">ls</button>
-    <script>
-        window.api.receive("fromMain", (data) => {
-            console.log(`Received ${data} from main process`);
-        });
-        window.api.send("toMain", "some data");
-    </script>
-  </body>
+        </div>
+    </div>
+
+
+    <!-- <div class="content">
+      <div class="top">
+          <h1 class="top-title">Winter Engine</h1>
+      </div>
+      <div class="engine-config">
+
+        <table>
+          <tr>
+            <td><h2 class="table-subtitle">Engine</h2></td>
+          </tr>
+          <tr>
+            <td>Engine Source Directory</td>
+            <td><input class="table-input" id="i-path-engine-dest" type="text" value=".\test"></input></td>
+          </tr>
+          <tr>
+            <td><h2 class="table-subtitle">Tools</h2></td>
+          </tr>
+          <tr>
+            <td>Premake Directory</td>
+            <td><input class="table-input" id="i_path_premake" type="text" value="..\tools\premake5.exe"></input></td>
+          </tr>
+          <tr>
+            <td>MSBuild Directory</td>
+            <td><input class="table-input" id="i_path_msbuild" type="text" value="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/msbuild.exe"></input></td>
+          </tr>
+        </table>
+
+        <div>
+           <div class="i-labeled-text">
+            <label>Engine Source Git</label>
+            <input id="i_git_engine" type="text" value="https://github.com/IainWinter/IwEngine/"></input>
+          </div>
+          
+          <div class="i-labeled-text">
+            <label>FMod Source Url</label>
+            <input id="i_url_fmod" type="text" value="https://winter.dev/engine/fmod_libs.zip"></input>
+          </div> 
+
+           <div class="i-labeled-text">
+            <label>Build project files for</label>
+            <input id="i_config_build_for" type="text" value="vs2019"></input>
+          </div> 
+
+          <button id="b-get-engine-source">Download Engine Source</button>
+          <button id="b-get-engine-source">Build Engine Project Files</button>
+          <button id="b-get-engine-source">Compile Engine</button>
+          <button>Build Engine Source</button> 
+        </div>
+      </div>
+    </div> -->
+
+</body>
+
 </html>

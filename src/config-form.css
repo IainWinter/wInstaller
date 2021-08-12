@@ -1,0 +1,15 @@
+.table-subtitle {
+    font-weight: 400;
+}
+  
+.table-input {
+    width: 50vw;
+    max-width: 600px;
+    min-width: 200px;
+}
+
+.config-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

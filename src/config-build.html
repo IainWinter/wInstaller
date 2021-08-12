@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pannel.css">
+    <link rel="stylesheet" href="config-form.css">
+    <link rel="stylesheet" href="log.css">
+    <body>
+        <div class="top">
+            <h1 class="top-title top-title-small"><a id="back-button" class="top-title-back-link" href="index.html">&#8602;</a>Build & Compile Winter Engine</h1>
+        </div>
+        <div class="hpannel">
+            <div class="pannel">
+                <table>
+                    <tr>
+                        <td><h2 class="table-subtitle">Tool locations</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Premake</td>
+                        <td><input class="table-input" id="i-path-premake" type="text" value="..\tools\premake5.exe"></input></td>
+                    </tr>
+                    <tr>
+                        <td>MSBuild</td>
+                        <td><input class="table-input" id="i-path-msbuild" type="text" value="C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/msbuild.exe"></input></td>
+                    </tr>
+                    <tr>
+                        <td><h2 class="table-subtitle">Make config</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Premake target</td>
+                        <td><input class="table-input" id="i-config-premake-target" type="text" value="vs2019" disabled></input></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="config-buttons">
+            <button id="b-make-projects">Make projects</button>
+            <button id="b-compile-projects">Compile projects</button>
+        </div>
+
+        <div class="log" id="log"></div>
+        <script src="log.js"></script>
+
+        <script src="lock-back-button.js"></script>
+
+        <script>
+
+            let i_path_premake          = document.getElementById("i-path-premake");
+            let i_path_msbuild          = document.getElementById("i-path-msbuild");
+            let i_config_premake_target = document.getElementById("i-config-premake-target");
+            let b_make_projects         = document.getElementById('b-make-projects');
+            let b_compile_projects      = document.getElementById('b-compile-projects');
+
+            b_make_projects.addEventListener('click', () =>
+            {
+                lock();
+                window.api.send('make-engine-projects', [i_path_premake.value, i_config_premake_target.value]);
+            });
+
+            b_compile_projects.addEventListener('click', () =>
+            {
+                lock();
+                window.api.send('compile-engine-projects', i_path_msbuild.value);
+            });
+
+            // locking stuff
+
+            window.api.receive('finish-locking-op', () => unlock());
+
+            function lock() {
+                lock_back();
+                i_path_premake.disabled = true;
+                i_path_msbuild.disabled = true;
+                b_make_projects.disabled = true;
+                b_compile_projects.disabled = true;
+            }
+
+            function unlock() {
+                unlock_back();
+                i_path_premake.disabled = false;
+                i_path_msbuild.disabled = false;
+                b_make_projects.disabled = false;
+                b_compile_projects.disabled = false;
+            }
+
+        </script>
+    </body>
+</head>
+</html>

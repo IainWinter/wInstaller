@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pannel.css">
+    <link rel="stylesheet" href="config-form.css">
+    <link rel="stylesheet" href="log.css">
+    <body>
+        <div class="top">
+            <h1 class="top-title top-title-small"><a id="back-button" class="top-title-back-link" href="index.html">&#8602;</a>Install Winter Engine</h1>
+        </div>
+        <div class="hpannel">
+            <div class="pannel">
+                <table>
+                    <tr>
+                        <td><h2 class="table-subtitle">Engine</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Install Directory</td>
+                        <td><input class="table-input" id="i-path-engine-dest" type="text" value=".\test"></input></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="config-buttons">
+            <button id="b-download-engine">Install Source</button>
+            <button id="b-download-engine">Install Binaries</button>
+        </div>
+
+        <div class="log" id="log"></div>
+        <script src="log.js"></script>
+
+        <script src="lock-back-button.js"></script>
+        
+        <script>
+
+            let i_path_engine_dest = document.getElementById("i-path-engine-dest");
+            let b_download_engine  = document.getElementById('b-download-engine');
+
+            b_download_engine.addEventListener('click', () =>
+            {
+                lock();
+                window.api.send('download-engine-source', i_path_engine_dest.value);
+            });
+
+            // locking stuff
+
+            window.api.receive('finish-locking-op', () => unlock());
+
+            function lock() {
+                lock_back();
+                i_path_engine_dest.disabled = true;
+            }
+
+            function unlock() {
+                unlock_back();
+                i_path_engine_dest.disabled = false;
+            }
+
+        </script>
+    </body>
+</head>
+</html>
