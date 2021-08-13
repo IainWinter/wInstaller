@@ -57,7 +57,7 @@
             b_make_projects.addEventListener('click', () =>
             {
                 lock();
-                window.api.send('make-engine-projects', [i_path_premake.value, i_config_premake_target.value]);
+                window.api.send('make-engine-projects', [i_path_premake.value, i_path_msbuild.value, i_config_premake_target.value]);
             });
 
             b_compile_projects.addEventListener('click', () =>
@@ -70,20 +70,25 @@
 
             window.api.receive('finish-locking-op', () => unlock());
 
+            let lockCount = 0;
+
             function lock() {
                 lock_back();
                 i_path_premake.disabled = true;
                 i_path_msbuild.disabled = true;
                 b_make_projects.disabled = true;
                 b_compile_projects.disabled = true;
+                lockCount++;
             }
 
             function unlock() {
-                unlock_back();
-                i_path_premake.disabled = false;
-                i_path_msbuild.disabled = false;
-                b_make_projects.disabled = false;
-                b_compile_projects.disabled = false;
+                if(lockCount--) {
+                    unlock_back();
+                    i_path_premake.disabled = false;
+                    i_path_msbuild.disabled = false;
+                    b_make_projects.disabled = false;
+                    b_compile_projects.disabled = false;
+                }
             }
 
             // make link open in browser

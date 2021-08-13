@@ -45,6 +45,7 @@
     }
   },
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {

@@ -50,18 +50,23 @@
 
             window.api.receive('finish-locking-op', () => unlock());
 
+            let lockCount = 0;
+
             function lock() {
                 lock_back();
                 b_download_engine_source.disabled = true;
                 b_download_engine_binary.disabled = true;
+                lockCount++;
             }
 
             function unlock() {
-                unlock_back();
-                b_download_engine_source.disabled = false;
-                b_download_engine_binary.disabled = false;
+                if (--lockCount == 0) {
+                    unlock_back();
+                    b_download_engine_source.disabled = false;
+                    b_download_engine_binary.disabled = false;
+                }
             }
-
+                
         </script>
     </body>
 </head>

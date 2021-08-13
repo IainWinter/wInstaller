@@ -8,4 +8,6 @@ window.api.receive('log', (msg) =>
 
     log.appendChild(p);
     console.log(msg);
+
+    log.scrollTop = log.scrollHeight;
 });
